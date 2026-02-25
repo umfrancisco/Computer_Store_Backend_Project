@@ -1,6 +1,6 @@
 package com.umfrancisco.model;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Store {
@@ -9,7 +9,7 @@ public class Store {
 	
 	public Store(String name) {
 		this.name = name;
-		products = new HashSet<>();
+		products = new LinkedHashSet<>();
 	}
 	
 	public void add(Product... p) {

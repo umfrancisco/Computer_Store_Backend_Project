@@ -10,7 +10,7 @@ public class Product {
 	private Random random = new Random();
 	
 	public Product(String name, double price, int stock) {
-		id = random.nextLong(1000);
+		id = random.nextLong(10_000);
 		this.name = name;
 		this.price = price;
 		if (stock < 0) {

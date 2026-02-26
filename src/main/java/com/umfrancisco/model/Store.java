@@ -1,5 +1,8 @@
 package com.umfrancisco.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -18,36 +21,70 @@ public class Store {
 		}
 	}
 	
-	public void sell(String name) {
-		sell(name, 1);
+	public void sell(String manufacturer, String model) {
+		sell(manufacturer, model, 1);
 	}
 	
-	public void sell(String name, int quantity) {
-		for (var product : products) {
-			boolean isFound = product.getName().contains(name.toUpperCase());
-			int stock = product.getStock();
-			if (isFound && stock - quantity >= 0) {
-				System.out.printf("# %d of %s was found and sold\n", stock, product.getName());
-				product.setStock(stock - quantity);
-				System.out.printf("# %d of %s remaining\n", product.getStock(), product.getName());
-			} 
-			if (isFound && stock - quantity < 0) {
-				System.out.printf("# Can not proceed, only %d of %s remaining\n".formatted(product.getStock(), product.getName()));
+	public void sell(String manufacturer, String model, int quantity) {
+		Product p = search(manufacturer, model);
+		if (p == null) {
+			System.out.println(operationTime()+": Unable to find %s or %s".formatted(manufacturer, model));
+		} else {
+			int stock = p.getStock();
+			if (stock < quantity) {
+				System.out.println(operationTime()+": There is not %d %s product(s) available".formatted(quantity, model));
+			} else {
+				p.setStock(stock - quantity);
+				sleepTimeOperation();
+				System.out.println(operationTime()+": %d %s %s sold, %d available".formatted(quantity, manufacturer, model, p.getStock()));
 			}
 		}
-		System.out.println();
 	}
 	
-	public void displayProducts() {
-		System.out.println(name);
-		line();
+	public void sleepTimeOperation() {
+		System.out.println(operationTime()+": Processing request...");
+		for (int i = 0; i < 5; i++) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	protected String operationTime() {
+		LocalDateTime dateTime = LocalDateTime.now();
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		String formattedDate = dateTime.format(format);
+		return formattedDate;
+	}
+	
+	protected Product search(String manufacturer, String model) {
+		for (var p : products) {
+			manufacturer = manufacturer.toUpperCase();
+			model = model.toUpperCase();
+			if (p.getManufacturer().equals(manufacturer) && p.getModel().equals(model)) {
+				return p;
+			}
+		}
+		return null;
+	}
+	
+	public void display() {
+		logo();
 		for (var product : products) {
 			System.out.println(product);
 			line();
 		}
 	}
 	
+	public void logo() {
+		line();
+		System.out.println("\n\t"+name.toUpperCase()+"\n");
+		line();
+	}
+	
 	public static void line() {
-		System.out.println("*".repeat(30));
+		System.out.println("*".repeat(40));
 	}
 }

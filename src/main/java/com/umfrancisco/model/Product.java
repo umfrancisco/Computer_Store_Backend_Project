@@ -27,7 +27,15 @@ public class Product {
 				Name: %s
 				Code: %d
 				Price: $%.2f
-				%s""".formatted(name, id, price, (stock > 0) ? "" : "SOLD OUT\n");
+				""".formatted(name, id, price);
+		if (stock == 0) {
+			String soldOutFormat = """
+				Name: %s
+				Code: %d
+				SOLD OUT
+				""".formatted(name, id);
+			return soldOutFormat;
+		}
 		return formattedOutput;
 	}
 }

@@ -45,7 +45,7 @@ public class Product {
 	
 	@Override
 	public String toString() {
-		String formattedOutput = """
+		String standardOutput = """
 				Manufacturer: %s
 				Model: %s
 				Code: %d
@@ -61,6 +61,6 @@ public class Product {
 				""".formatted(manufacturer, model, id);
 			return soldOutFormat;
 		}
-		return formattedOutput;
+		return standardOutput;
 	}
 }

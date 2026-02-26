@@ -1,6 +1,5 @@
 package com.umfrancisco.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashSet;
@@ -35,15 +34,15 @@ public class Store {
 				System.out.println(operationTime()+": There is not %d %s product(s) available".formatted(quantity, model));
 			} else {
 				p.setStock(stock - quantity);
-				sleepTimeOperation();
+				delay();
 				System.out.println(operationTime()+": %d %s %s sold, %d available".formatted(quantity, manufacturer, model, p.getStock()));
 			}
 		}
 	}
 	
-	public void sleepTimeOperation() {
+	public void delay() {
 		System.out.println(operationTime()+": Processing request...");
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 3; i++) {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

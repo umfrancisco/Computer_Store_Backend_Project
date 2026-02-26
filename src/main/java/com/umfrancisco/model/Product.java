@@ -11,7 +11,7 @@ public class Product {
 	
 	public Product(String name, double price, int stock) {
 		id = random.nextLong(10_000);
-		this.name = name;
+		this.name = name.toUpperCase();
 		this.price = price;
 		if (stock < 0) {
 			System.err.println("Can not register negative numbers for stock");
@@ -19,6 +19,22 @@ public class Product {
 		} else {
 			this.stock = stock;
 		}
+	}
+	
+	public long getId() {
+		return id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public int getStock() {
+		return stock;
+	}
+	
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 	
 	@Override

@@ -18,8 +18,24 @@ public class Store {
 		}
 	}
 	
-	public void add(Product product) {
-		products.add(product);
+	public void sell(String name) {
+		sell(name, 1);
+	}
+	
+	public void sell(String name, int quantity) {
+		for (var product : products) {
+			boolean isFound = product.getName().contains(name.toUpperCase());
+			int stock = product.getStock();
+			if (isFound && stock - quantity >= 0) {
+				System.out.printf("# %d of %s was found and sold\n", stock, product.getName());
+				product.setStock(stock - quantity);
+				System.out.printf("# %d of %s remaining\n", product.getStock(), product.getName());
+			} 
+			if (isFound && stock - quantity < 0) {
+				System.out.printf("# Can not proceed, only %d of %s remaining\n".formatted(product.getStock(), product.getName()));
+			}
+		}
+		System.out.println();
 	}
 	
 	public void displayProducts() {

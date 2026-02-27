@@ -17,9 +17,10 @@ public class Store {
 	public void add(Product... p) {
 		for (var product : p) {
 			if (product == null) {
-				return;
+				System.err.println(Utils.operationTime()+": Error inserting product");
+			} else {				
+				products.add(product);
 			}
-			products.add(product);
 		}
 	}
 	

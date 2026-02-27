@@ -9,7 +9,7 @@ public class Main {
 		
 		Product lenovo = Product.getInstance("Lenovo", "Thinkpad", 1200.0, 3);
 		Product acer = Product.getInstance("Acer", "Aspire", 1000.0, 4);
-		Product mac = Product.getInstance("Apple", "MacBook", 2300.0, -1);
+		Product mac = Product.getInstance("Apple", "MacBook", 2300.0, 1);
 		
 		store.add(lenovo, acer, mac);
 		store.display();

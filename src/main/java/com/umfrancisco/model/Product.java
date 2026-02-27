@@ -2,6 +2,8 @@ package com.umfrancisco.model;
 
 import java.util.Random;
 
+import com.umfrancisco.util.Utils;
+
 public class Product {
 	private final long id;
 	private final String manufacturer;
@@ -10,17 +12,20 @@ public class Product {
 	private int stock;
 	private Random random = new Random();
 	
-	public Product(String manufacturer, String model, double price, int stock) {
+	protected Product(String manufacturer, String model, double price, int stock) {
 		id = random.nextLong(10_000);
 		this.manufacturer = manufacturer.toUpperCase();
 		this.model = model.toUpperCase();
 		this.price = price;
-		if (stock < 0) {
-			System.err.println("Can not register negative numbers for stock");
-			this.stock = 0;
-		} else {
-			this.stock = stock;
+		this.stock = stock;
+	}
+	
+	public static Product getInstance(String manufacturer, String model, double price, int stock) {
+		if (price < 0 || stock < 0) {
+			System.err.println(Utils.operationTime()+": Insert positive values for price and stock");
+			return null;
 		}
+		return new Product(manufacturer, model, price, stock);
 	}
 	
 	public long getId() {

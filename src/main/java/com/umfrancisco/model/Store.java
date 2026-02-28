@@ -2,7 +2,6 @@ package com.umfrancisco.model;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 import com.umfrancisco.util.Utils;
 
 public class Store {
@@ -14,7 +13,7 @@ public class Store {
 		products = new LinkedHashSet<>();
 	}
 	
-	public void add(Product... p) {
+	public void addToStore(Product... p) {
 		for (var product : p) {
 			if (product == null) {
 				System.err.println(Utils.operationTime()+": Error inserting product");
@@ -24,11 +23,11 @@ public class Store {
 		}
 	}
 	
-	public void sell(String manufacturer, String model) {
-		sell(manufacturer, model, 1);
+	public void addToCart(Cart cart, String manufacturer, String model) {
+		addToCart(cart, manufacturer, model, 1);
 	}
 	
-	public void sell(String manufacturer, String model, int quantity) {
+	public void addToCart(Cart cart, String manufacturer, String model, int quantity) {
 		Product p = search(manufacturer, model);
 		if (p == null) {
 			System.out.println(Utils.operationTime()+": Unable to find %s or %s".formatted(manufacturer, model));
@@ -38,9 +37,16 @@ public class Store {
 				System.out.println(Utils.operationTime()+": There is not %d %s product(s) available".formatted(quantity, model));
 			} else {
 				p.setStock(stock - quantity);
-				Utils.delay();
-				System.out.println(Utils.operationTime()+": %d %s %s sold, %d available".formatted(quantity, manufacturer, model, p.getStock()));
+				cart.addToCart(p, quantity);
+				System.out.println(Utils.operationTime()+": %d %s %s added to cart, %d available".formatted(quantity, manufacturer, model, p.getStock()));
+				remove(p);
 			}
+		}
+	}
+	
+	public void remove(Product product) {
+		if (product.getStock() == 0) {
+			products.remove(product);
 		}
 	}
 	

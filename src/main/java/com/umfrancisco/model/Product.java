@@ -1,7 +1,6 @@
 package com.umfrancisco.model;
 
 import java.util.Random;
-
 import com.umfrancisco.util.Utils;
 
 public class Product {
@@ -31,15 +30,15 @@ public class Product {
 	public long getId() {
 		return id;
 	}
-	
-	public String getModel() {
-		return model;
-	}
-	
 	public String getManufacturer() {
 		return manufacturer;
 	}
-	
+	public String getModel() {
+		return model;
+	}
+	public double getPrice() {
+		return price;
+	}
 	public int getStock() {
 		return stock;
 	}
@@ -50,22 +49,11 @@ public class Product {
 	
 	@Override
 	public String toString() {
-		String standardOutput = """
+		return """
 				Manufacturer: %s
 				Model: %s
 				Code: %d
 				Price: $%.2f
-				Available: %d
 				""".formatted(manufacturer, model, id, price, stock);
-		if (stock == 0) {
-			String soldOutFormat = """
-				Manufacturer: %s
-				Model: %s
-				Code: %d
-				SOLD OUT
-				""".formatted(manufacturer, model, id);
-			return soldOutFormat;
-		}
-		return standardOutput;
 	}
 }

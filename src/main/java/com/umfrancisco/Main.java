@@ -9,15 +9,11 @@ public class Main {
 		Store store = new Store("Computer Tech");
 		Cart cart = new Cart("Francisco");
 		
-		Product lenovo, acer, mac, iphone, samsung;
+		Product.getInstance(store, 100, "Lenovo Thinkpad", 1200.0, 3);
+		Product.getInstance(store, 100, "Lenovo Thinkpad", 1200.0, 3);
+		Product.getInstance(store, 200, "Acer Aspire", 1000.0, 4);
+		Product.getInstance(store, 300, "Apple MacBook", 2300.0, 1);
 		
-		lenovo = Product.getInstance("Lenovo Thinkpad", 1200.0, 3);
-		acer = Product.getInstance("Acer Aspire", 1000.0, 4);
-		mac = Product.getInstance("Apple MacBook", 2300.0, 1);
-		iphone= Product.getInstance("Apple 17 Pro", 800, 3);
-		samsung = Product.getInstance("Samsung Galaxy S", 700, 2);
-		
-		store.addToStore(lenovo, acer, mac, iphone, samsung);
 		store.display();
 		
 		store.addToCart(cart, "Lenono Thinkpad");
@@ -25,7 +21,6 @@ public class Main {
 		store.addToCart(cart, "Lenovo Thinkpad", 2);
 		store.addToCart(cart, "apple macbook", 1);
 		store.addToCart(cart, "apple macbook", 1);
-		store.addToCart(cart, "samsung galaxy s", 1);
 		
 		cart.showCart();
 		store.display();

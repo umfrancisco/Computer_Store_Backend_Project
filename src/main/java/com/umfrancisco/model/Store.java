@@ -13,13 +13,12 @@ public class Store {
 		products = new LinkedHashSet<>();
 	}
 	
-	public void addToStore(Product... p) {
-		for (var product : p) {
-			if (product == null) {
-				System.err.println(Utils.operationTime()+": Error inserting product");
-			} else {				
-				products.add(product);
-			}
+	public void addToStore(Product product) {
+		if (product == null) {
+			System.err.println(Utils.operationTime()+": Error inserting product");
+		}
+		if (isNewProduct(product)) {
+			products.add(product);				
 		}
 	}
 	
@@ -30,11 +29,11 @@ public class Store {
 	public void addToCart(Cart cart, String model, int quantity) {
 		Product p = search(model);
 		if (p == null) {
-			System.out.println(Utils.operationTime()+": Unable to find %s".formatted(model));
+			System.err.println(Utils.operationTime()+": Unable to find %s".formatted(model));
 		} else {
 			int stock = p.getStock();
 			if (stock < quantity) {
-				System.out.println(Utils.operationTime()+": There is not %d %s product(s) available".formatted(quantity, model));
+				System.err.println(Utils.operationTime()+": There is not %d %s product(s) available".formatted(quantity, model));
 			} else {
 				p.setStock(stock - quantity);
 				cart.addToCart(p, quantity);
@@ -48,6 +47,16 @@ public class Store {
 		if (product.getStock() == 0) {
 			products.remove(product);
 		}
+	}
+	
+	protected boolean isNewProduct(Product p) {
+		for (var product : products) {
+			if (p.getId() == product.getId()) {
+				System.err.println(Utils.operationTime()+": Duplicated item %s".formatted(p.getModel()));
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	protected Product search(String model) {

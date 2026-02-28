@@ -5,25 +5,24 @@ import java.util.List;
 import com.umfrancisco.util.Utils;
 
 public class Cart {
-	// reminder: change String -> User
-	private String user;
+	private String username;
 	private List<Product> cart;
 	
-	public Cart(String user) {
-		this.user = user;
+	public Cart(String username) {
+		this.username = username;
 		cart = new ArrayList<>();
 	}
 	
 	public void addToCart(Product product, int quantity) {
 		for (int i = 0; i < quantity; i++) {
 			cart.add(product);
-			System.out.println(Utils.operationTime()+": %s added to %s's cart".formatted(product.getModel(), user));
+			System.out.println(Utils.operationTime()+": %s added to %s's cart".formatted(product.getModel(), username));
 		}
 	}
 	
 	public void showCart() {
 		Utils.line();
-		System.out.println("Customer Payout: %s\n".toUpperCase().formatted(user));
+		System.out.println("Customer Payout: %s\n".toUpperCase().formatted(username));
 		double total = 0;
 		for (var p : cart) {
 			System.out.println(p);

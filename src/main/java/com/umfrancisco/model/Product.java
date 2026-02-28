@@ -1,6 +1,5 @@
 package com.umfrancisco.model;
 
-import java.util.Random;
 import com.umfrancisco.util.Utils;
 
 public class Product {
@@ -8,21 +7,22 @@ public class Product {
 	private final String model;
 	private final double price;
 	private int stock;
-	private Random random = new Random();
 	
-	protected Product(String model, double price, int stock) {
-		id = random.nextLong(10_000);
+	protected Product(long id, String model, double price, int stock) {
+		this.id = id;
 		this.model = model.toUpperCase();
 		this.price = price;
 		this.stock = stock;
 	}
 	
-	public static Product getInstance(String model, double price, int stock) {
+	public static Product getInstance(Store store, long id, String model, double price, int stock) {
 		if (price < 0 || stock < 0) {
 			System.err.println(Utils.operationTime()+": Insert positive values for price and stock");
 			return null;
 		}
-		return new Product(model, price, stock);
+		Product product = new Product(id, model, price, stock);
+		store.addToStore(product);
+		return product;
 	}
 	
 	public long getId() {

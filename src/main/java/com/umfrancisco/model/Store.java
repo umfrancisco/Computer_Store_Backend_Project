@@ -23,14 +23,14 @@ public class Store {
 		}
 	}
 	
-	public void addToCart(Cart cart, String manufacturer, String model) {
-		addToCart(cart, manufacturer, model, 1);
+	public void addToCart(Cart cart, String model) {
+		addToCart(cart, model, 1);
 	}
 	
-	public void addToCart(Cart cart, String manufacturer, String model, int quantity) {
-		Product p = search(manufacturer, model);
+	public void addToCart(Cart cart, String model, int quantity) {
+		Product p = search(model);
 		if (p == null) {
-			System.out.println(Utils.operationTime()+": Unable to find %s or %s".formatted(manufacturer, model));
+			System.out.println(Utils.operationTime()+": Unable to find %s".formatted(model));
 		} else {
 			int stock = p.getStock();
 			if (stock < quantity) {
@@ -38,7 +38,7 @@ public class Store {
 			} else {
 				p.setStock(stock - quantity);
 				cart.addToCart(p, quantity);
-				System.out.println(Utils.operationTime()+": %d %s %s added to cart, %d available".formatted(quantity, manufacturer, model, p.getStock()));
+				System.out.println(Utils.operationTime()+": %d %s added to cart, %d available".formatted(quantity, model, p.getStock()));
 				remove(p);
 			}
 		}
@@ -50,11 +50,10 @@ public class Store {
 		}
 	}
 	
-	protected Product search(String manufacturer, String model) {
+	protected Product search(String model) {
 		for (var p : products) {
-			manufacturer = manufacturer.toUpperCase();
 			model = model.toUpperCase();
-			if (p.getManufacturer().equals(manufacturer) && p.getModel().equals(model)) {
+			if (p.getModel().equals(model)) {
 				return p;
 			}
 		}

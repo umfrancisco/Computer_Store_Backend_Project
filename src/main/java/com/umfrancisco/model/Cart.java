@@ -13,7 +13,7 @@ public class Cart {
 		cart = new ArrayList<>();
 	}
 	
-	public void addToCart(Product product, int quantity) {
+	protected void addToCart(Product product, int quantity) {
 		for (int i = 0; i < quantity; i++) {
 			cart.add(product);
 			System.out.println(Utils.operationTime()+": %s added to %s's cart".formatted(product.getModel(), username));

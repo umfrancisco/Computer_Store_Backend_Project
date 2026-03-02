@@ -15,7 +15,7 @@ public class Store {
 	
 	public void addToStore(Product product) {
 		if (product == null) {
-			System.err.println(Utils.operationTime()+": Error inserting product");
+			System.out.println(Utils.operationTime()+": Error inserting product");
 		}
 		if (isNewProduct(product)) {
 			products.add(product);				
@@ -29,11 +29,11 @@ public class Store {
 	public void addToCart(Cart cart, String model, int quantity) {
 		Product p = search(model);
 		if (p == null) {
-			System.err.println(Utils.operationTime()+": Unable to find %s".formatted(model));
+			System.out.println(Utils.operationTime()+": Unable to find %s".formatted(model));
 		} else {
 			int stock = p.getStock();
 			if (stock < quantity) {
-				System.err.println(Utils.operationTime()+": There is not %d %s product(s) available".formatted(quantity, model));
+				System.out.println(Utils.operationTime()+": There is not %d %s product(s) available".formatted(quantity, model));
 			} else {
 				p.setStock(stock - quantity);
 				cart.addToCart(p, quantity);
@@ -52,7 +52,7 @@ public class Store {
 	protected boolean isNewProduct(Product p) {
 		for (var product : products) {
 			if (p.getId() == product.getId()) {
-				System.err.println(Utils.operationTime()+": Duplicated item %s".formatted(p.getModel()));
+				System.out.println(Utils.operationTime()+": Duplicated item %s".formatted(p.getModel()));
 				return false;
 			}
 		}

@@ -1,14 +1,14 @@
 package com.umfrancisco;
 
 import com.umfrancisco.model.Store;
+import com.umfrancisco.model.User;
 import com.umfrancisco.model.Cart;
-import com.umfrancisco.model.Product;
 import com.umfrancisco.model.Category;
 
 public class Main {
 	public static void main(String[] args) {
 		Store store = new Store("Computer Tech");
-		Cart cart = new Cart("Francisco");
+		Cart cart = new Cart(new User("Bob", "bob@email.com"));
 		
 		store.createAndAddProduct(100, "Lenovo Thinkpad", 1200.0, 3, Category.NOTEBOOK);
 		store.createAndAddProduct(100, "Lenovo Thinkpad", 1200.0, 3, Category.NOTEBOOK);

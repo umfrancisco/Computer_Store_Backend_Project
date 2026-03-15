@@ -13,6 +13,15 @@ public class Store {
 		products = new LinkedHashSet<>();
 	}
 	
+	public Product createAndAddProduct(long id, String model, double price, int stock, Category type) {
+		if (price < 0 || stock < 0) {
+			throw new IllegalArgumentException(Utils.operationTime()+": Insert positive values for price and stock");
+		}
+		Product product = new Product(id, model, price, stock, type);
+		addToStore(product);
+		return product;
+	}
+	
 	public void addToStore(Product product) {
 		if (product == null) {
 			System.out.println(Utils.operationTime()+": Error inserting product");

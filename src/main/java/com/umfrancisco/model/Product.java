@@ -33,6 +33,9 @@ public class Product {
 	public int getStock() {
 		return stock;
 	}
+	public String getStore() {
+		return store;
+	}
 	
 	public void setStock(int stock) {
 		this.stock = stock;

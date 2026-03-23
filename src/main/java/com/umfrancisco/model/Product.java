@@ -7,11 +7,15 @@ import jakarta.persistence.Id;
 public class Product {
 	
 	@Id
-	private final long id;
-	private final String model;
-	private final double price;
+	private long id;
+	private String model;
+	private double price;
 	private int stock;
 	private String store;
+	
+	public Product() {
+		
+	}
 	
 	public Product(long id, String model, double price, int stock, String store) {
 		this.id = id;

@@ -1,0 +1,29 @@
+mar. 23, 2026 11:14:41 AM org.hibernate.Version logVersion
+INFO: HHH000001: Hibernate ORM core version 7.3.0.Final
+mar. 23, 2026 11:14:43 AM org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProvider configure
+WARN: HHH10001002: Using built-in connection pool (not intended for production use)
+mar. 23, 2026 11:14:44 AM org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl constructDialect
+WARN: HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+mar. 23, 2026 11:14:44 AM org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator logConnectionInfo
+INFO: HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/computer_store]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.1
+	Default catalog/schema: computer_store/public
+	Autocommit mode: false
+	Isolation level: READ_COMMITTED
+	JDBC fetch size: none
+	Pool: DriverManagerConnectionProvider
+	Minimum pool size: 1
+	Maximum pool size: 20
+mar. 23, 2026 11:14:46 AM org.hibernate.metamodel.internal.EntityInstantiatorPojoStandard resolveConstructor
+INFO: HHH000182: No default (no-argument) constructor for class [com.umfrancisco.model.Product] (class must be instantiated by Interceptor)
+mar. 23, 2026 11:14:47 AM org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService
+INFO: HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: set client_min_messages = WARNING
+Hibernate: drop table if exists Product cascade
+Hibernate: create table Product (price float(53) not null, stock integer not null, id bigint not null, model varchar(255), store varchar(255), primary key (id))
+Hibernate: insert into Product (model,price,stock,store,id) values (?,?,?,?,?)
+Hibernate: insert into Product (model,price,stock,store,id) values (?,?,?,?,?)
+Hibernate: insert into Product (model,price,stock,store,id) values (?,?,?,?,?)

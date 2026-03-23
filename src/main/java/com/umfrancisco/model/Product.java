@@ -11,12 +11,14 @@ public class Product {
 	private final String model;
 	private final double price;
 	private int stock;
+	private String store;
 	
-	public Product(long id, String model, double price, int stock) {
+	public Product(long id, String model, double price, int stock, String store) {
 		this.id = id;
 		this.model = model.toUpperCase();
 		this.price = price;
 		this.stock = stock;
+		this.store = store;
 	}
 	
 	public long getId() {
@@ -38,10 +40,6 @@ public class Product {
 	
 	@Override
 	public String toString() {
-		return """
-				Model: %s
-				Code: %d
-				Price: $%.2f
-				""".formatted(model, id, price, stock);
+		return "(%d) %s %.2f %d".formatted(id, model, price, stock);
 	}
 }

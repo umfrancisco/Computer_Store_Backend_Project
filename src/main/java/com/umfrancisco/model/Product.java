@@ -1,18 +1,22 @@
 package com.umfrancisco.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Product {
+	
+	@Id
 	private final long id;
 	private final String model;
 	private final double price;
 	private int stock;
-	private final Category category;
 	
-	protected Product(long id, String model, double price, int stock, Category category) {
+	public Product(long id, String model, double price, int stock) {
 		this.id = id;
 		this.model = model.toUpperCase();
 		this.price = price;
 		this.stock = stock;
-		this.category = category;
 	}
 	
 	public long getId() {

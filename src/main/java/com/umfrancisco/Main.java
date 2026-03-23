@@ -1,29 +1,10 @@
 package com.umfrancisco;
 
-import com.umfrancisco.model.Store;
-import com.umfrancisco.model.User;
-import com.umfrancisco.model.Cart;
-import com.umfrancisco.model.Category;
+import com.umfrancisco.dao.ProductDAO;
 
 public class Main {
 	public static void main(String[] args) {
-		Store store = new Store("Computer Tech");
-		Cart cart = new Cart(new User("Bob", "bob@email.com"));
-		
-		store.createAndAddProduct(100, "Lenovo Thinkpad", 1200.0, 3, Category.NOTEBOOK);
-		store.createAndAddProduct(100, "Lenovo Thinkpad", 1200.0, 3, Category.NOTEBOOK);
-		store.createAndAddProduct(200, "Acer Aspire", 1000.0, 4, Category.NOTEBOOK);
-		store.createAndAddProduct(300, "Apple MacBook", 2300.0, 1, Category.NOTEBOOK);
-		
-		store.display();
-		
-		store.addToCart(cart, "Lenono Thinkpad");
-		store.addToCart(cart, "Lenovo Thinkpad", 4);
-		store.addToCart(cart, "Lenovo Thinkpad", 2);
-		store.addToCart(cart, "apple macbook", 1);
-		store.addToCart(cart, "apple macbook", 1);
-		
-		cart.showCart();
-		store.display();
+		ProductDAO dao = new ProductDAO();
+		dao.createAndAdd(100, "Lenovo Ideapad", 1200.00, 5);
 	}
 }

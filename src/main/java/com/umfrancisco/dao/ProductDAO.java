@@ -1,29 +1,47 @@
 package com.umfrancisco.dao;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 import com.umfrancisco.model.Product;
-import com.umfrancisco.util.DatabaseConnection;
 
 public class ProductDAO {
+	private SessionFactory sf = null;
+	private Transaction transaction = null;
+	private Session session = null;
 	
-	private DatabaseConnection database = null;
+	public void open() {
+		sf = new Configuration()
+				.addAnnotatedClass(com.umfrancisco.model.Product.class)
+				.configure()
+				.buildSessionFactory();
+		session = sf.openSession();
+	}
 	
-	public void createConnection() {
-		if (database == null) {
-			database = new DatabaseConnection();
-			database.open();
-		}
+	public Product find(long id) {
+		Product p = null;
+		p = session.find(Product.class, id);
+		return p;
+	}
+	
+	public void commit(Product product) {
+		transaction = session.beginTransaction();
+		session.persist(product);
+		transaction.commit();
 	}
 	
 	public void addProduct(long id, String model, double price, int stock, String store) {
 		Product product = new Product(id, model, price, stock, store);
-		if (database != null) {
-			database.commit(product);
-		}
+		commit(product);
 	}
 	
-	public void closeConnection() {
-		if (database != null) {
-			database.close();
+	public void close() {
+		if (session != null) {
+			session.close();
+		}
+		if (sf != null) {
+			sf.close();
 		}
 	}
 }

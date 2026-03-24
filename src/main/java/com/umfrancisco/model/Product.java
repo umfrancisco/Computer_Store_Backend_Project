@@ -44,9 +44,10 @@ public class Product {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "ID: %d, MODEL: %s, PRICE: $%.2f, STOCK: %d".formatted(id, model, price, stock);
+		return "Product [id=" + id + ", model=" + model + ", price=$" + price + ", stock=" + stock + ", store=" + store
+				+ "]";
 	}
 }

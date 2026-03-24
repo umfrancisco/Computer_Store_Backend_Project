@@ -1,15 +1,19 @@
 package com.umfrancisco.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
+
 import com.umfrancisco.model.Product;
 
 public class ProductDAO {
 	private SessionFactory sf = null;
-	private Transaction transaction = null;
 	private Session session = null;
+	private Transaction transaction = null;
 	
 	public void open() {
 		sf = new Configuration()
@@ -17,6 +21,17 @@ public class ProductDAO {
 				.configure()
 				.buildSessionFactory();
 		session = sf.openSession();
+	}
+	
+	public List<Product> select() {
+		List<Product> list = select("");
+		return list;
+	}
+	
+	public List<Product> select(String filter) {
+		Query<Product> query = session.createQuery("from Product "+filter, Product.class);
+		List<Product> list = query.getResultList();
+		return list;
 	}
 	
 	public Product find(long id) {

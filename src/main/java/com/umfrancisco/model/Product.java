@@ -19,7 +19,7 @@ public class Product {
 	
 	public Product(long id, String model, double price, int stock, String store) {
 		this.id = id;
-		this.model = model.toUpperCase();
+		this.model = model;
 		this.price = price;
 		this.stock = stock;
 		this.store = store;
@@ -47,6 +47,6 @@ public class Product {
 	
 	@Override
 	public String toString() {
-		return "(%d) %s %.2f %d".formatted(id, model, price, stock);
+		return "ID: %d, MODEL: %s, PRICE: $%.2f, STOCK: %d".formatted(id, model, price, stock);
 	}
 }

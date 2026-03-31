@@ -1,25 +1,34 @@
 package com.umfrancisco;
 
-import com.umfrancisco.dao.ProductDAO;
+import java.util.Random;
+
+import com.umfrancisco.model.Product;
+import com.umfrancisco.service.ProductService;
 
 public class Main {
 	public static void main(String[] args) {
-		ProductDAO dao = new ProductDAO();
-		dao.open();
+		Random random = new Random();
 		
-		dao.addProduct(100, "Dell Inspiron 15", 2999.17, 65, "Store 1");
-		dao.addProduct(101, "HP Pavilion 14", 3699.38, 35, "Store 2");
-		dao.addProduct(102, "Lenovo IdeaPad 3", 2924.86, 23, "Store 1");
-		dao.addProduct(103, "Lenovo Yoga Slim 7i", 2683.12, 12, "Store 3");
-		dao.addProduct(104, "Asus Vivobook S15", 8369.07, 29, "Store 2");
+		Product[] products = {
+				new Product(random.nextLong(1000), "Dell Inspiron 15", 2999.17, 65, "Store 1"),
+				new Product(random.nextLong(1000), "HP Pavilion 14", 3699.38, 35, "Store 2"),
+				new Product(random.nextLong(1000), "Lenovo IdeaPad 3", 2924.86, 23, "Store 1"),
+				new Product(random.nextLong(1000), "Lenovo Yoga Slim 7i", 2683.12, 12, "Store 3"),
+				new Product(random.nextLong(1000), "Asus Vivobook S15", 8369.07, 29, "Store 2")
+		};
+		int size = products.length;
 		
-		var list = dao.select();
-		System.out.println("-".repeat(50));
+		ProductService service = new ProductService();
 		
-		for (var l : list) {
-			System.out.println(l);
+		for (int i = 0; i < size; i++) {
+			service.save(products[i]);
 		}
 		
-		dao.close();
+		var list = service.findAll();
+		for (var item : list) {
+			System.out.println(item);
+		}
+		
+		service.closeConnection();
 	}
 }

@@ -14,6 +14,7 @@
 
 ## Folders Structure
 
+<pre>
 ├─── src <br>
 │   ├─── main <br>
 │   │   ├─── java <br>
@@ -38,7 +39,7 @@
     │           └─── com.umfrancisco <br>
     │               └─── ComputerStore <br>
     └─── test-classes <br>
-
+</pre>
 
 ### Layers
 

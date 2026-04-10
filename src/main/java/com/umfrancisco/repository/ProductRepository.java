@@ -17,7 +17,7 @@ public class ProductRepository extends AbstractStoreRepository<Product> {
 	}
 	
 	public List<Product> findAll() {
-		Query<Product> query = session.createQuery("from Product ", Product.class);
+		Query<Product> query = session.createQuery("from Product", Product.class);
 		List<Product> list = query.getResultList();
 		return list;
 	}

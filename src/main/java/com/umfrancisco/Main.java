@@ -2,13 +2,27 @@ package com.umfrancisco;
 
 import java.util.Random;
 
+import com.umfrancisco.model.Customer;
 import com.umfrancisco.model.Product;
 import com.umfrancisco.service.ProductService;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		products();
+		
+	}
+	
+	public static void customers() {
+		Random random = new Random();
+		
+		Customer[] customers = {
+				new Customer(random.nextLong(1000), "Ann", "ann@email.com"),
+				new Customer(random.nextLong(1000), "Bob", "bob@email.com"),
+				new Customer(random.nextLong(1000), "Carole", "carole@email.com"),
+				new Customer(random.nextLong(1000), "Dave", "dave@email.com"),
+				new Customer(random.nextLong(1000), "Ed", "ed@email.com")
+		};
+		int size = customers.length;
 	}
 	
 	public static void products() {

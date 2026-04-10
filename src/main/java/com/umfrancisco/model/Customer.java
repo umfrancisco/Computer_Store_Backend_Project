@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Customer {
@@ -13,6 +14,7 @@ public class Customer {
 	private long id;
 	private String name;
 	private String email;
+	@OneToMany
 	private List<Product> products;
 	
 	public Customer() {

@@ -11,6 +11,7 @@ public abstract class AbstractStoreRepository<T> {
 	protected SessionFactory sf = new Configuration()
 			.addAnnotatedClass(com.umfrancisco.model.Product.class)
 			.addAnnotatedClass(com.umfrancisco.model.Customer.class)
+			.addAnnotatedClass(com.umfrancisco.model.Sale.class)
 			.configure()
 			.buildSessionFactory();
 	protected Session session = sf.openSession();
@@ -31,9 +32,9 @@ public abstract class AbstractStoreRepository<T> {
 		transaction.commit();
 	}
 	
-	abstract void save(T t);
-	abstract List<T> findAll();
-	abstract T findById(long id);
-	abstract void remove(long id);
-	abstract void removeAll();
+	public abstract void save(T t);
+	public abstract List<T> findAll();
+	public abstract T findById(long id);
+	public abstract void remove(long id);
+	public abstract void removeAll();
 }

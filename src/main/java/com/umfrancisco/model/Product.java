@@ -10,19 +10,15 @@ public class Product {
 	private long id;
 	private String model;
 	private double price;
-	private int stock;
-	private String store;
 	
 	public Product() {
 		
 	}
 	
-	public Product(long id, String model, double price, int stock, String store) {
+	public Product(long id, String model, double price) {
 		this.id = id;
 		this.model = model;
 		this.price = price;
-		this.stock = stock;
-		this.store = store;
 	}
 	
 	public long getId() {
@@ -34,20 +30,9 @@ public class Product {
 	public double getPrice() {
 		return price;
 	}
-	public int getStock() {
-		return stock;
-	}
-	public String getStore() {
-		return store;
-	}
-	
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", model=" + model + ", price=$" + price + ", stock=" + stock + ", store=" + store
-				+ "]";
+		return "Product [id=" + id + ", model=" + model + ", price=$" + price + "]";
 	}
 }

@@ -1,9 +1,10 @@
 package com.umfrancisco;
 
-import java.util.Random;
 import com.umfrancisco.model.Customer;
+import com.umfrancisco.model.Sale;
 import com.umfrancisco.model.Product;
 import com.umfrancisco.service.CustomerService;
+import com.umfrancisco.service.SaleService;
 import com.umfrancisco.service.ProductService;
 
 public class Main {
@@ -15,9 +16,11 @@ public class Main {
 	public static void viewTables() {
 		ProductService productService = new ProductService();
 		CustomerService customerService = new CustomerService();
+		SaleService saleService = new SaleService();
 		
 		var products = productService.findAll();
 		var customers = customerService.findAll();
+		var sales = saleService.findAll();
 		
 		for (var p : products) {
 			System.out.println(p);			
@@ -25,20 +28,40 @@ public class Main {
 		for (var c : customers) {
 			System.out.println(c);
 		}
+		for (var s : sales) {
+			System.out.println(s);
+		}
 		
 		productService.closeConnection();
 		customerService.closeConnection();
 	}
 	
-	public static void addRandomCustomers() {
-		Random random = new Random();
+	public static void addRandomSales() {
+		CustomerService cs = new CustomerService();
+		Customer c = cs.findById(1);
 		
+		ProductService ps = new ProductService();
+		Product p1 = ps.findById(3);
+		Product p2 = ps.findById(5);
+		
+		Sale sale = new Sale(101, c, p1, p2);
+		
+		SaleService service = new SaleService();
+		service.save(sale);
+		
+		var list = service.findAll();
+		for (var item : list) {
+			System.out.println(item);
+		}
+	}
+	
+	public static void addRandomCustomers() {
 		Customer[] customers = {
-				new Customer(random.nextLong(1000), "Ann", "ann@email.com"),
-				new Customer(random.nextLong(1000), "Bob", "bob@email.com"),
-				new Customer(random.nextLong(1000), "Carole", "carole@email.com"),
-				new Customer(random.nextLong(1000), "Dave", "dave@email.com"),
-				new Customer(random.nextLong(1000), "Ed", "ed@email.com")
+				new Customer(1, "Ann", "ann@email.com"),
+				new Customer(2, "Bob", "bob@email.com"),
+				new Customer(3, "Carole", "carole@email.com"),
+				new Customer(4, "Dave", "dave@email.com"),
+				new Customer(5, "Ed", "ed@email.com")
 		};
 		int size = customers.length;
 		
@@ -56,14 +79,12 @@ public class Main {
 	}
 	
 	public static void addRandomProducts() {
-		Random random = new Random();
-		
 		Product[] products = {
-				new Product(random.nextLong(1000), "Dell Inspiron 15", 2999.17, 65, "Store 1"),
-				new Product(random.nextLong(1000), "HP Pavilion 14", 3699.38, 35, "Store 2"),
-				new Product(random.nextLong(1000), "Lenovo IdeaPad 3", 2924.86, 23, "Store 1"),
-				new Product(random.nextLong(1000), "Lenovo Yoga Slim 7i", 2683.12, 12, "Store 3"),
-				new Product(random.nextLong(1000), "Asus Vivobook S15", 8369.07, 29, "Store 2")
+				new Product(1, "Dell Inspiron 15", 2999.17),
+				new Product(2, "HP Pavilion 14", 3699.38),
+				new Product(3, "Lenovo IdeaPad 3", 2924.86),
+				new Product(4, "Lenovo Yoga Slim 7i", 2683.12),
+				new Product(5, "Asus Vivobook S15", 8369.07)
 		};
 		int size = products.length;
 		

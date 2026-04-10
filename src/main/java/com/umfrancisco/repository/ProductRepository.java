@@ -27,12 +27,12 @@ public class ProductRepository extends AbstractStoreRepository<Product> {
 	}
 
 	@Override
-	void remove(long id) {
+	public void remove(long id) {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	void removeAll() {
+	public void removeAll() {
 		// TODO Auto-generated method stub
 	}
 }

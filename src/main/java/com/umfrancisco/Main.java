@@ -6,7 +6,12 @@ import com.umfrancisco.model.Product;
 import com.umfrancisco.service.ProductService;
 
 public class Main {
+	
 	public static void main(String[] args) {
+		
+	}
+	
+	public static void products() {
 		Random random = new Random();
 		
 		Product[] products = {

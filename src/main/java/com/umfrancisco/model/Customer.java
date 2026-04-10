@@ -14,8 +14,6 @@ public class Customer {
 	private long id;
 	private String name;
 	private String email;
-	@OneToMany
-	private List<Product> products;
 	
 	public Customer() {
 		
@@ -25,7 +23,6 @@ public class Customer {
 		this.id = id;
 		this.name = name;
 		this.email = email;
-		products = new ArrayList<>();
 	}
 	
 	public long getId() {
@@ -46,16 +43,9 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public List<Product> getProducts() {
-		return products;
-	}
-	
-	public void add(Product product) {
-		products.add(product);
-	}
 	
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", products=" + products + "]";
+		return "Customer [id=" + id + ", name=" + name + ", email=" + email + "]";
 	}
 }

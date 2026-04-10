@@ -10,7 +10,7 @@ public class ProductService {
 	private ProductRepository repository = new ProductRepository();
 	
 	public void save(Product product) {
-		repository.saveProduct(product);
+		repository.save(product);
 	}
 	
 	public List<Product> findAll() {

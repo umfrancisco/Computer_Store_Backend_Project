@@ -1,5 +1,6 @@
 package com.umfrancisco.repository;
 
+import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -29,4 +30,10 @@ public abstract class AbstractStoreRepository<T> {
 		session.persist(t);
 		transaction.commit();
 	}
+	
+	abstract void save(T t);
+	abstract List<T> findAll();
+	abstract T findById(long id);
+	abstract void remove(long id);
+	abstract void removeAll();
 }

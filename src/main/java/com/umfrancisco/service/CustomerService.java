@@ -9,7 +9,7 @@ public class CustomerService {
 	private CustomerRepository repository = new CustomerRepository();
 
 	public void save(Customer customer) {
-		repository.saveCustomer(customer);
+		repository.save(customer);
 	}
 	
 	public List<Customer> findAll() {

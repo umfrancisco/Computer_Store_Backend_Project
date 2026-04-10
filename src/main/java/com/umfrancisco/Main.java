@@ -1,18 +1,36 @@
 package com.umfrancisco;
 
 import java.util.Random;
-
 import com.umfrancisco.model.Customer;
 import com.umfrancisco.model.Product;
+import com.umfrancisco.service.CustomerService;
 import com.umfrancisco.service.ProductService;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		
+		viewTables();
 	}
 	
-	public static void customers() {
+	public static void viewTables() {
+		ProductService productService = new ProductService();
+		CustomerService customerService = new CustomerService();
+		
+		var products = productService.findAll();
+		var customers = customerService.findAll();
+		
+		for (var p : products) {
+			System.out.println(p);			
+		}
+		for (var c : customers) {
+			System.out.println(c);
+		}
+		
+		productService.closeConnection();
+		customerService.closeConnection();
+	}
+	
+	public static void addRandomCustomers() {
 		Random random = new Random();
 		
 		Customer[] customers = {
@@ -23,9 +41,21 @@ public class Main {
 				new Customer(random.nextLong(1000), "Ed", "ed@email.com")
 		};
 		int size = customers.length;
+		
+		CustomerService service = new CustomerService();
+		
+		for (int i = 0; i < size; i++) {
+			service.save(customers[i]);
+		}
+		
+		var list = service.findAll();
+		for (var item : list) {
+			System.out.println(item);
+		}
+		service.closeConnection();
 	}
 	
-	public static void products() {
+	public static void addRandomProducts() {
 		Random random = new Random();
 		
 		Product[] products = {

@@ -7,7 +7,7 @@ import com.umfrancisco.model.Customer;
 
 public class CustomerRepository extends AbstractStoreRepository<Customer> {
 	
-	public void saveProduct(Customer customer) {
+	public void saveCustomer(Customer customer) {
 		commit(customer);
 	}
 	

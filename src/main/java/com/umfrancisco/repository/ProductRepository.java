@@ -10,29 +10,7 @@ import org.hibernate.query.Query;
 
 import com.umfrancisco.model.Product;
 
-public class ProductRepository {
-	
-	private SessionFactory sf = new Configuration()
-			.addAnnotatedClass(com.umfrancisco.model.Product.class)
-			.configure()
-			.buildSessionFactory();
-	private Session session = sf.openSession();
-	private Transaction transaction = null;
-	
-	public void close() {
-		if (session != null) {
-			session.close();
-		}
-		if (sf != null) {
-			sf.close();
-		}
-	}
-	
-	public void commit(Product product) {
-		transaction = session.beginTransaction();
-		session.persist(product);
-		transaction.commit();
-	}
+public class ProductRepository extends AbstractStoreRepository<Product> {
 	
 	public void saveProduct(Product product) {
 		commit(product);

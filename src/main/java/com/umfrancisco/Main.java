@@ -8,7 +8,7 @@ import com.umfrancisco.service.ProductService;
 public class Main {
 	
 	public static void main(String[] args) {
-		
+		products();
 	}
 	
 	public static void products() {

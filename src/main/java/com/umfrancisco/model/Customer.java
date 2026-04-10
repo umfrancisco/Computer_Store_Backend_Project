@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 public class Customer {
 	
 	@Id
-	private int id;
+	private long id;
 	private String name;
 	private String email;
 	private List<Product> products;
@@ -19,17 +19,17 @@ public class Customer {
 		
 	}
 	
-	public Customer(int id, String name, String email) {
+	public Customer(long id, String name, String email) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		products = new ArrayList<>();
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {

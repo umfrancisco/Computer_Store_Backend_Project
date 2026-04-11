@@ -26,6 +26,17 @@ public class Sale {
 		this.customer = customer;
 		this.products = new ArrayList<>(List.of(products));
 	}
+	
+	public double getTotalPrice() {
+		double sum = 0;
+		for (var p : products) {
+			double price = p.getPrice();
+			if (price > 0) {
+				sum += price;
+			}
+		}
+		return sum;
+	}
 
 	@Override
 	public String toString() {

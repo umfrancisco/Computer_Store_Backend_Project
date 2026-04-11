@@ -5,6 +5,7 @@ import com.umfrancisco.model.Sale;
 import com.umfrancisco.repository.SaleRepository;
 
 public class SaleService {
+	
 	private SaleRepository repository = new SaleRepository();
 	
 	public void save(Sale sale) {

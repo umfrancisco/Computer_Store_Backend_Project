@@ -10,7 +10,15 @@ import com.umfrancisco.service.ProductService;
 public class Main {
 	
 	public static void main(String[] args) {
-		viewTables();
+		
+	}
+	
+	public static void getTotalPrice() {
+		SaleService service = new SaleService();
+		Sale sale = service.findById(101);
+		double total = sale.getTotalPrice();
+		System.out.println(sale);
+		System.out.println("$"+total);
 	}
 	
 	public static void viewTables() {

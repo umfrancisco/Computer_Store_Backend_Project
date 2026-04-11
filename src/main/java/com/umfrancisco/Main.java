@@ -18,7 +18,7 @@ public class Main {
 		Order sale = service.findById(101);
 		double total = sale.getTotalPrice();
 		System.out.println(sale);
-		System.out.println("$"+total);
+		System.out.println("TOTAL PRICE: $"+total);
 	}
 	
 	public static void viewTables() {

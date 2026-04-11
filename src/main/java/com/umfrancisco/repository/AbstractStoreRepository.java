@@ -11,7 +11,7 @@ public abstract class AbstractStoreRepository<T> {
 	protected SessionFactory sf = new Configuration()
 			.addAnnotatedClass(com.umfrancisco.model.Product.class)
 			.addAnnotatedClass(com.umfrancisco.model.Customer.class)
-			.addAnnotatedClass(com.umfrancisco.model.Sale.class)
+			.addAnnotatedClass(com.umfrancisco.model.Order.class)
 			.configure()
 			.buildSessionFactory();
 	protected Session session = sf.openSession();

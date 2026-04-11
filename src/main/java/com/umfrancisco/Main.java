@@ -1,21 +1,21 @@
 package com.umfrancisco;
 
 import com.umfrancisco.model.Customer;
-import com.umfrancisco.model.Sale;
+import com.umfrancisco.model.Order;
 import com.umfrancisco.model.Product;
 import com.umfrancisco.service.CustomerService;
-import com.umfrancisco.service.SaleService;
+import com.umfrancisco.service.OrderService;
 import com.umfrancisco.service.ProductService;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		
+		viewTables();
 	}
 	
 	public static void getTotalPrice() {
-		SaleService service = new SaleService();
-		Sale sale = service.findById(101);
+		OrderService service = new OrderService();
+		Order sale = service.findById(101);
 		double total = sale.getTotalPrice();
 		System.out.println(sale);
 		System.out.println("$"+total);
@@ -24,11 +24,11 @@ public class Main {
 	public static void viewTables() {
 		ProductService productService = new ProductService();
 		CustomerService customerService = new CustomerService();
-		SaleService saleService = new SaleService();
+		OrderService orderService = new OrderService();
 		
 		var products = productService.findAll();
 		var customers = customerService.findAll();
-		var sales = saleService.findAll();
+		var orders = orderService.findAll();
 		
 		for (var p : products) {
 			System.out.println(p);			
@@ -36,15 +36,15 @@ public class Main {
 		for (var c : customers) {
 			System.out.println(c);
 		}
-		for (var s : sales) {
-			System.out.println(s);
+		for (var o : orders) {
+			System.out.println(o);
 		}
 		
 		productService.closeConnection();
 		customerService.closeConnection();
 	}
 	
-	public static void addRandomSales() {
+	public static void addRandomOrder() {
 		CustomerService cs = new CustomerService();
 		Customer c = cs.findById(1);
 		
@@ -52,10 +52,10 @@ public class Main {
 		Product p1 = ps.findById(3);
 		Product p2 = ps.findById(5);
 		
-		Sale sale = new Sale(101, c, p1, p2);
+		Order order = new Order(101, c, p1, p2);
 		
-		SaleService service = new SaleService();
-		service.save(sale);
+		OrderService service = new OrderService();
+		service.save(order);
 		
 		var list = service.findAll();
 		for (var item : list) {

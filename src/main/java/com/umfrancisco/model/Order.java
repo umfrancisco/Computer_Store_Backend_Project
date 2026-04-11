@@ -6,9 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
-public class Sale {
+@Table(name="order_tb")
+public class Order {
 	
 	@Id
 	private long id;
@@ -17,11 +19,11 @@ public class Sale {
 	@ManyToMany
 	private List<Product> products;
 	
-	public Sale() {
+	public Order() {
 		
 	}
 	
-	public Sale(long id, Customer customer, Product... products) {
+	public Order(long id, Customer customer, Product... products) {
 		this.id = id;
 		this.customer = customer;
 		this.products = new ArrayList<>(List.of(products));
@@ -40,6 +42,6 @@ public class Sale {
 
 	@Override
 	public String toString() {
-		return "Sale [id=" + id + ", customer=" + customer + ", products=" + products + "]";
+		return "Order [id=" + id + ", customer=" + customer + ", products=" + products + "]";
 	}
 }

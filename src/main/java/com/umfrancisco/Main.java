@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import com.umfrancisco.model.Customer;
 import com.umfrancisco.model.Product;
+import com.umfrancisco.service.CustomerService;
 import com.umfrancisco.service.ProductService;
 
 public class Main {
@@ -36,5 +37,16 @@ public class Main {
 		    new Customer(10L, "Sofia", "Martins", "sofia.m@email.com", LocalDate.of(1994, 2, 27), "Rua Central, 200", "Curitiba", "Brazil")
 		);
 		
+		var productService = new ProductService();
+		var customerService = new CustomerService();
+		
+//		productService.saveAll(products);
+//		customerService.saveAll(customers);
+		
+		System.out.println(productService.findAll());
+		System.out.println(customerService.findAll());
+		
+		productService.closeConnection();
+		customerService.closeConnection();
 	}
 }

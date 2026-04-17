@@ -42,6 +42,6 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Customer: %s %s".formatted(customer, products);
+		return "Order [id=" + id + ", customer=" + customer + ", products=" + products + "]";
 	}
 }

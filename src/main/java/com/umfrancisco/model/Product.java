@@ -35,6 +35,6 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "%s: $%.2f".formatted(model, price);
+		return "Product [id=" + id + ", model=" + model + ", price=" + price + "]";
 	}
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import com.umfrancisco.model.Order;
 import com.umfrancisco.repository.OrderRepository;
 
-public class OrderService implements PersistenceService<Order> {
+public class OrderService implements EntityPersistence<Order> {
 	
 	private OrderRepository repository = new OrderRepository();
 	

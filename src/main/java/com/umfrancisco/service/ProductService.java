@@ -5,7 +5,7 @@ import java.util.List;
 import com.umfrancisco.model.Product;
 import com.umfrancisco.repository.ProductRepository;
 
-public class ProductService implements PersistenceService<Product> {
+public class ProductService implements EntityPersistence<Product> {
 	
 	private ProductRepository repository = new ProductRepository();
 	

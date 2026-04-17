@@ -4,7 +4,7 @@ import java.util.List;
 import com.umfrancisco.model.Customer;
 import com.umfrancisco.repository.CustomerRepository;
 
-public class CustomerService implements PersistenceService<Customer> {
+public class CustomerService implements EntityPersistence<Customer> {
 	
 	private CustomerRepository repository = new CustomerRepository();
 

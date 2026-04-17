@@ -4,7 +4,7 @@ import java.util.List;
 import org.hibernate.query.Query;
 import com.umfrancisco.model.Order;
 
-public class OrderRepository extends AbstractStoreRepository<Order> {
+public class OrderRepository extends AbstractRepository<Order> {
 
 	@Override
 	public void save(Order order) {

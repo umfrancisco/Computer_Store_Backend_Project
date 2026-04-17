@@ -5,7 +5,7 @@ import java.util.List;
 import org.hibernate.query.Query;
 import com.umfrancisco.model.Customer;
 
-public class CustomerRepository extends AbstractStoreRepository<Customer> {
+public class CustomerRepository extends AbstractRepository<Customer> {
 	
 	@Override
 	public void save(Customer customer) {

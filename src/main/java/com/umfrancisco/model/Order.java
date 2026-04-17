@@ -1,6 +1,6 @@
 package com.umfrancisco.model;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -18,30 +18,43 @@ public class Order {
 	private Customer customer;
 	@ManyToMany
 	private List<Product> products;
+	private LocalDate orderDate;
 	
-	public Order() {
-		
-	}
-	
-	public Order(long id, Customer customer, Product... products) {
+	public Order(long id, Customer customer, List<Product> products, LocalDate orderDate) {
 		this.id = id;
 		this.customer = customer;
-		this.products = new ArrayList<>(List.of(products));
+		this.products = products;
+		this.orderDate = orderDate;
 	}
 	
-	public double getTotalPrice() {
-		double sum = 0;
-		for (var p : products) {
-			double price = p.getPrice();
-			if (price > 0) {
-				sum += price;
-			}
-		}
-		return sum;
+	public long getId() {
+		return id;
 	}
-
+	public void setId(long id) {
+		this.id = id;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public List<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+	public LocalDate getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(LocalDate orderDate) {
+		this.orderDate = orderDate;
+	}
+	
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", customer=" + customer + ", products=" + products + "]";
+		return "Order [id=" + id + ", customer=" + customer + ", products=" + products + ", orderDate=" + orderDate
+				+ "]";
 	}
 }

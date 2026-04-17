@@ -1,112 +1,40 @@
 package com.umfrancisco;
 
+import java.time.LocalDate;
+import java.util.List;
 import com.umfrancisco.model.Customer;
-import com.umfrancisco.model.Order;
 import com.umfrancisco.model.Product;
-import com.umfrancisco.service.CustomerService;
-import com.umfrancisco.service.OrderService;
 import com.umfrancisco.service.ProductService;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		viewTables();
-	}
-	
-	public static void getTotalPrice() {
-		OrderService service = new OrderService();
-		Order sale = service.findById(101);
-		double total = sale.getTotalPrice();
-		System.out.println(sale);
-		System.out.println("TOTAL PRICE: $"+total);
-	}
-	
-	public static void viewTables() {
-		ProductService productService = new ProductService();
-		CustomerService customerService = new CustomerService();
-		OrderService orderService = new OrderService();
 		
-		var products = productService.findAll();
-		var customers = customerService.findAll();
-		var orders = orderService.findAll();
+		List<Product> products = List.of(
+		    new Product(1L, "iPhone 14", "Apple smartphone with A15 chip", 799.99, 50, LocalDate.of(2022, 9, 16)),
+		    new Product(2L, "Galaxy S23", "Samsung flagship Android phone", 699.99, 40, LocalDate.of(2023, 2, 1)),
+		    new Product(3L, "MacBook Pro M2", "Apple laptop with M2 chip", 1299.99, 25, LocalDate.of(2022, 6, 24)),
+		    new Product(4L, "Dell XPS 13", "Compact ultrabook laptop", 999.99, 30, LocalDate.of(2021, 11, 10)),
+		    new Product(5L, "Sony WH-1000XM5", "Noise cancelling headphones", 349.99, 100, LocalDate.of(2022, 5, 20)),
+		    new Product(6L, "iPad Air", "Apple tablet with M1 chip", 599.99, 45, LocalDate.of(2022, 3, 18)),
+		    new Product(7L, "Amazon Echo Dot", "Smart speaker with Alexa", 49.99, 200, LocalDate.of(2021, 10, 5)),
+		    new Product(8L, "GoPro Hero 11", "Action camera 5.3K video", 399.99, 60, LocalDate.of(2022, 9, 14)),
+		    new Product(9L, "Nintendo Switch", "Hybrid gaming console", 299.99, 80, LocalDate.of(2017, 3, 3)),
+		    new Product(10L, "Logitech MX Master 3", "Advanced wireless mouse", 99.99, 150, LocalDate.of(2019, 9, 4))
+		);
 		
-		for (var p : products) {
-			System.out.println(p);			
-		}
-		for (var c : customers) {
-			System.out.println(c);
-		}
-		for (var o : orders) {
-			System.out.println(o);
-		}
+		List<Customer> customers = List.of(
+		    new Customer(1L, "Lucas", "Silva", "lucas.silva@email.com", LocalDate.of(1995, 5, 12), "Rua das Flores, 123", "São Paulo", "Brazil"),
+		    new Customer(2L, "Maria", "Oliveira", "maria.oliveira@email.com", LocalDate.of(1990, 11, 25), "Av. Paulista, 1000", "São Paulo", "Brazil"),
+		    new Customer(3L, "John", "Smith", "john.smith@email.com", LocalDate.of(1985, 3, 8), "742 Evergreen Terrace", "Springfield", "USA"),
+		    new Customer(4L, "Emma", "Johnson", "emma.j@email.com", LocalDate.of(1992, 7, 30), "221B Baker Street", "London", "UK"),
+		    new Customer(5L, "Carlos", "Souza", "carlos.souza@email.com", LocalDate.of(1988, 1, 15), "Rua A, 45", "Rio de Janeiro", "Brazil"),
+		    new Customer(6L, "Ana", "Costa", "ana.costa@email.com", LocalDate.of(1997, 4, 22), "Rua B, 78", "Belo Horizonte", "Brazil"),
+		    new Customer(7L, "Liam", "Brown", "liam.brown@email.com", LocalDate.of(1993, 12, 5), "10 Downing St", "London", "UK"),
+		    new Customer(8L, "Olivia", "Davis", "olivia.d@email.com", LocalDate.of(1996, 8, 18), "5th Avenue", "New York", "USA"),
+		    new Customer(9L, "Noah", "Wilson", "noah.w@email.com", LocalDate.of(1989, 10, 9), "Sunset Blvd", "Los Angeles", "USA"),
+		    new Customer(10L, "Sofia", "Martins", "sofia.m@email.com", LocalDate.of(1994, 2, 27), "Rua Central, 200", "Curitiba", "Brazil")
+		);
 		
-		productService.closeConnection();
-		customerService.closeConnection();
-	}
-	
-	public static void addRandomOrder() {
-		CustomerService cs = new CustomerService();
-		Customer c = cs.findById(1);
-		
-		ProductService ps = new ProductService();
-		Product p1 = ps.findById(3);
-		Product p2 = ps.findById(5);
-		
-		Order order = new Order(101, c, p1, p2);
-		
-		OrderService service = new OrderService();
-		service.save(order);
-		
-		var list = service.findAll();
-		for (var item : list) {
-			System.out.println(item);
-		}
-	}
-	
-	public static void addRandomCustomers() {
-		Customer[] customers = {
-				new Customer(1, "Ann", "ann@email.com"),
-				new Customer(2, "Bob", "bob@email.com"),
-				new Customer(3, "Carole", "carole@email.com"),
-				new Customer(4, "Dave", "dave@email.com"),
-				new Customer(5, "Ed", "ed@email.com")
-		};
-		int size = customers.length;
-		
-		CustomerService service = new CustomerService();
-		
-		for (int i = 0; i < size; i++) {
-			service.save(customers[i]);
-		}
-		
-		var list = service.findAll();
-		for (var item : list) {
-			System.out.println(item);
-		}
-		service.closeConnection();
-	}
-	
-	public static void addRandomProducts() {
-		Product[] products = {
-				new Product(1, "Dell Inspiron 15", 2999.17),
-				new Product(2, "HP Pavilion 14", 3699.38),
-				new Product(3, "Lenovo IdeaPad 3", 2924.86),
-				new Product(4, "Lenovo Yoga Slim 7i", 2683.12),
-				new Product(5, "Asus Vivobook S15", 8369.07)
-		};
-		int size = products.length;
-		
-		ProductService service = new ProductService();
-		
-		for (int i = 0; i < size; i++) {
-			service.save(products[i]);
-		}
-		
-		var list = service.findAll();
-		for (var item : list) {
-			System.out.println(item);
-		}
-		
-		service.closeConnection();
 	}
 }

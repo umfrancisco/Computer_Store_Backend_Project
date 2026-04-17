@@ -5,7 +5,7 @@ import org.hibernate.query.Query;
 
 import com.umfrancisco.model.Product;
 
-public class ProductRepository extends AbstractStoreRepository<Product> {
+public class ProductRepository extends AbstractRepository<Product> {
 	
 	@Override
 	public void save(Product product) {

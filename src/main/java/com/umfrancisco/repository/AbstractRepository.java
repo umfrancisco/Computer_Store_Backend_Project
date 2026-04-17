@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public abstract class AbstractStoreRepository<T> {
+public abstract class AbstractRepository<T> {
 	
 	protected SessionFactory sf = new Configuration()
 			.addAnnotatedClass(com.umfrancisco.model.Product.class)

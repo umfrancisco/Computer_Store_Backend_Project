@@ -1,7 +1,6 @@
 package com.umfrancisco.repository;
 
 import java.util.List;
-
 import org.hibernate.query.Query;
 import com.umfrancisco.model.Customer;
 

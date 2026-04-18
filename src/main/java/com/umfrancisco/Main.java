@@ -40,8 +40,8 @@ public class Main {
 		var productService = new ProductService();
 		var customerService = new CustomerService();
 		
-		productService.saveAll(products);
-		customerService.saveAll(customers);
+//		productService.saveAll(products);
+//		customerService.saveAll(customers);
 		
 		System.out.println(productService.findAll());
 		System.out.println(customerService.findAll());

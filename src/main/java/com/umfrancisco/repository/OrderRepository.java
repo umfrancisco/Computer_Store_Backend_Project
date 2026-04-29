@@ -7,7 +7,7 @@ import com.umfrancisco.model.Order;
 public class OrderRepository extends AbstractRepository<Order> {
 
 	@Override
-	public void save(Order order) {
+	public void saveOrUpdate(Order order) {
 		commit(order);
 	}
 
@@ -26,13 +26,27 @@ public class OrderRepository extends AbstractRepository<Order> {
 	}
 
 	@Override
-	public void remove(long id) {
-		// TODO Auto-generated method stub
+	public int remove(long id) {
+		int count = 0;
+		Order order = findById(id);
+		if (order != null) {
+			beginTransaction();
+			session.remove(order);
+			commit();
+			count++;
+		}
+		return count;
 	}
 
 	@Override
-	public void removeAll() {
-		// TODO Auto-generated method stub
+	public int removeAll() {
+		int count = 0;
+		List<Order> list = findAll();
+		for (var o : list) {
+			int removed = remove(o.getId());
+			count += removed;
+		}
+		return count;
 	}
 	
 }

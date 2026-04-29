@@ -26,15 +26,23 @@ public abstract class AbstractRepository<T> {
 		}
 	}
 	
-	public void commit(T t) {
+	public void beginTransaction() {
 		transaction = session.beginTransaction();
-		session.persist(t);
+	}
+	
+	public void commit() {
 		transaction.commit();
 	}
 	
-	public abstract void save(T t);
+	public void commit(T t) {
+		beginTransaction();
+		session.persist(t);
+		commit();
+	}
+	
+	public abstract void saveOrUpdate(T t);
 	public abstract List<T> findAll();
 	public abstract T findById(long id);
-	public abstract void remove(long id);
-	public abstract void removeAll();
+	public abstract int remove(long id);
+	public abstract int removeAll();
 }

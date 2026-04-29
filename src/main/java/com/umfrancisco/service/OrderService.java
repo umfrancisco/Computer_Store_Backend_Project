@@ -9,14 +9,14 @@ public class OrderService implements EntityPersistence<Order> {
 	private OrderRepository repository = new OrderRepository();
 	
 	@Override
-	public void save(Order order) {
-		repository.save(order);
+	public void saveOrUpdate(Order order) {
+		repository.saveOrUpdate(order);
 	}
 	
 	@Override
 	public void saveAll(List<Order> orders) {
 		for (var o : orders) {
-			save(o);
+			saveOrUpdate(o);
 		}
 	}
 	
@@ -28,6 +28,17 @@ public class OrderService implements EntityPersistence<Order> {
 	@Override
 	public Order findById(long id) {
 		return repository.findById(id);
+	}
+
+	@Override
+	public int remove(long id) {
+		int count = repository.remove(id);
+		return count;
+	}
+
+	@Override
+	public int removeAll() {
+		return repository.removeAll();
 	}
 	
 	@Override

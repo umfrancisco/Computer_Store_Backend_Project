@@ -7,7 +7,7 @@ import com.umfrancisco.model.Customer;
 public class CustomerRepository extends AbstractRepository<Customer> {
 	
 	@Override
-	public void save(Customer customer) {
+	public void saveOrUpdate(Customer customer) {
 		commit(customer);
 	}
 	
@@ -26,12 +26,26 @@ public class CustomerRepository extends AbstractRepository<Customer> {
 	}
 
 	@Override
-	public void remove(long id) {
-		// TODO Auto-generated method stub
+	public int remove(long id) {
+		int count = 0;
+		Customer customer = findById(id);
+		if (customer != null) {
+			beginTransaction();
+			session.remove(customer);
+			commit();
+			count++;
+		}
+		return count;
 	}
 
 	@Override
-	public void removeAll() {
-		// TODO Auto-generated method stub
+	public int removeAll() {
+		int count = 0;
+		List<Customer> list = findAll();
+		for (var c : list) {
+			int removed = remove(c.getId());
+			count += removed;
+		}
+		return count;
 	}
 }

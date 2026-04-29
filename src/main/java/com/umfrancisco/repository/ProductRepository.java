@@ -8,7 +8,7 @@ import com.umfrancisco.model.Product;
 public class ProductRepository extends AbstractRepository<Product> {
 	
 	@Override
-	public void save(Product product) {
+	public void saveOrUpdate(Product product) {
 		commit(product);
 	}
 	
@@ -27,12 +27,26 @@ public class ProductRepository extends AbstractRepository<Product> {
 	}
 
 	@Override
-	public void remove(long id) {
-		// TODO Auto-generated method stub
+	public int remove(long id) {
+		int count = 0;
+		Product product = findById(id);
+		if (product != null) {
+			beginTransaction();
+			session.remove(product);
+			commit();
+			count++;
+		}
+		return count;
 	}
 
 	@Override
-	public void removeAll() {
-		// TODO Auto-generated method stub
+	public int removeAll() {
+		int count = 0;
+		List<Product> list = findAll();
+		for (var p : list) {
+			int removed = remove(p.getId());
+			count += removed;
+		}
+		return count;
 	}
 }

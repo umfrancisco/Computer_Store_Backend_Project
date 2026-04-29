@@ -9,14 +9,14 @@ public class CustomerService implements EntityPersistence<Customer> {
 	private CustomerRepository repository = new CustomerRepository();
 
 	@Override
-	public void save(Customer customer) {
-		repository.save(customer);
+	public void saveOrUpdate(Customer customer) {
+		repository.saveOrUpdate(customer);
 	}
 	
 	@Override
 	public void saveAll(List<Customer> customers) {
 		for (var c : customers) {
-			save(c);
+			saveOrUpdate(c);
 		}
 	}
 	
@@ -28,6 +28,17 @@ public class CustomerService implements EntityPersistence<Customer> {
 	@Override
 	public Customer findById(long id) {
 		return repository.findById(id);
+	}
+	
+	@Override
+	public int remove(long id) {
+		int count = repository.remove(id);
+		return count;
+	}
+	
+	@Override
+	public int removeAll() {
+		return repository.removeAll();
 	}
 	
 	@Override

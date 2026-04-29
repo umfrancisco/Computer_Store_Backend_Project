@@ -9,14 +9,14 @@ public class ProductService implements EntityPersistence<Product> {
 	private ProductRepository repository = new ProductRepository();
 	
 	@Override
-	public void save(Product product) {
-		repository.save(product);
+	public void saveOrUpdate(Product product) {
+		repository.saveOrUpdate(product);
 	}
 	
 	@Override
 	public void saveAll(List<Product> products) {
 		for (var p : products) {
-			save(p);
+			saveOrUpdate(p);
 		}
 	}
 	
@@ -28,6 +28,17 @@ public class ProductService implements EntityPersistence<Product> {
 	@Override
 	public Product findById(long id) {
 		return repository.findById(id);
+	}
+	
+	@Override
+	public int remove(long id) {
+		int count = repository.remove(id);
+		return count;
+	}
+	
+	@Override
+	public int removeAll() {
+		return repository.removeAll();
 	}
 	
 	@Override

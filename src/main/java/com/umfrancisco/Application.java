@@ -7,7 +7,7 @@ import com.umfrancisco.model.Product;
 import com.umfrancisco.service.CustomerService;
 import com.umfrancisco.service.ProductService;
 
-public class Main {
+public class Application {
 	
 	public static void main(String[] args) {
 		
@@ -17,8 +17,8 @@ public class Main {
 		var productService = new ProductService();
 		var customerService = new CustomerService();
 		
-//		productService.saveAll(products);
-//		customerService.saveAll(customers);
+		productService.saveAll(products);
+		customerService.saveAll(customers);
 		
 //		int productsRemoved = productService.removeAll();
 //		int customersRemoved = customerService.removeAll();
